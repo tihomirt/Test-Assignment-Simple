@@ -6,6 +6,6 @@ Make sure java8 and maven are installed properly
 
 Download the code
 
-From the root directory of the project run the command:
+From the root directory of the project - where the pom.xml exists - run the command:
 
 mvn clean test
