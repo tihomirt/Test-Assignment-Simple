@@ -1,7 +1,6 @@
-package com.example.qa.suites;
+package com.qa.suites;
 
-import com.example.qa.tests.MapTests;
-
+import com.qa.tests.MapTests;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.runner.RunWith;
@@ -10,6 +9,7 @@ import org.junit.runner.RunWith;
 @SelectClasses({
     MapTests.class,  
 })
+
 public class Suite {
 
 }

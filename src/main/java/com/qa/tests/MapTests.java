@@ -1,15 +1,17 @@
-package com.example.qa.tests;
+package com.qa.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import com.qa.api.ClustersDevMapApi;
 import com.qa.pageobjects.LandingPage;
 import com.qa.pageobjects.ManagementCenterPage;
 import com.qa.pageobjects.MapsPage;
 import com.qa.pageobjects.MenuSection.MenuItem;
 import com.qa.testbase.TestBase;
-import org.junit.jupiter.api.Test;
 import java.util.Map;
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
 
 public class MapTests extends TestBase {
@@ -38,16 +40,19 @@ public class MapTests extends TestBase {
     
     @SuppressWarnings("unchecked")
     Optional<Object> defaultMap = mapApi.getMapInformation()
-    .getBody().jsonPath().getList("")
+        .getBody().jsonPath().getList("")
         .stream()
         .filter(x -> ((Map<String, String>) x).containsValue("default"))
         .findFirst();
     
-    if (defaultMap.isPresent())
+    if (defaultMap.isPresent()) {
       assertEquals(((Map)defaultMap.get()).get("entries"), mapsPage.getNumOfEntriesForDefaultMap());
+    } else {
+      fail("Data from api is not available.");
+    }
+    
+    // logout after test
     mapsPage.clickLogoutButton();
-
   }
-
 
 }
