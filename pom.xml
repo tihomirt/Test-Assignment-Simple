@@ -13,7 +13,8 @@
 
 		<webdriver.version>3.141.59</webdriver.version>
 		<webdrivermanager.version>3.6.1</webdrivermanager.version>
-
+		<restassured.version>4.0.0</restassured.version>
+		
 		<java.version>1.8</java.version>
 		<jupiter.version>5.4.2</jupiter.version>
 		<vintage.version>5.4.2</vintage.version>
@@ -33,6 +34,13 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+		</dependency>
 
 		<!-- Selenium -->
 		<dependency>

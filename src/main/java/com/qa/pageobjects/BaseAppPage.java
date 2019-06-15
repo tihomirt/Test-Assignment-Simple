@@ -2,14 +2,18 @@ package com.qa.pageobjects;
 
 import com.qa.testbase.BrowsersEnum;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
- * Containe rfor common components after the login.
+ * Container for common components after the login.
  * @author Tihomir Turzai
  *
  */
 abstract class BaseAppPage extends BasePage {
 
+  @FindBy(css = "a[data-test='logout']")
+  private WebElement logoutButton;
   private MenuSection menuSection;
   
   public BaseAppPage(WebDriver driver, BrowsersEnum browser) {
@@ -19,6 +23,10 @@ abstract class BaseAppPage extends BasePage {
 
   public MenuSection getMenuSection() {
     return menuSection;
+  }
+  
+  public void clickLogoutButton() {
+    logoutButton.click();
   }
   
 }

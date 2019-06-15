@@ -1,22 +1,23 @@
 package com.example.qa.tests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.Assert.assertEquals;
+import com.qa.api.ClustersDevMapApi;
 import com.qa.pageobjects.LandingPage;
 import com.qa.pageobjects.ManagementCenterPage;
 import com.qa.pageobjects.MapsPage;
 import com.qa.pageobjects.MenuSection.MenuItem;
 import com.qa.testbase.TestBase;
 import org.junit.jupiter.api.Test;
+import java.util.Map;
+import java.util.Optional;
+
 
 public class MapTests extends TestBase {
-
-  private static final int NUM_OF_ENTRIES = 100;
 
   public MapTests() throws Exception {
     super();
   }
-  
+
   /**
    * Test Map entries
    * 1. Load google.com
@@ -31,7 +32,22 @@ public class MapTests extends TestBase {
     LandingPage landingPage = (LandingPage) new LandingPage(driver, getBrowser());
     ManagementCenterPage managmentCenterPage = landingPage.defaultLogin();
     MapsPage mapsPage = (MapsPage) managmentCenterPage.getMenuSection().click(MenuItem.Maps);
-    assertEquals(NUM_OF_ENTRIES, mapsPage.getNumOfEntriesForDefaultMap());
+
+    // send the cookie along with the get request
+    ClustersDevMapApi mapApi = new ClustersDevMapApi(driver);
+    
+    @SuppressWarnings("unchecked")
+    Optional<Object> defaultMap = mapApi.getMapInformation()
+    .getBody().jsonPath().getList("")
+        .stream()
+        .filter(x -> ((Map<String, String>) x).containsValue("default"))
+        .findFirst();
+    
+    if (defaultMap.isPresent())
+      assertEquals(((Map)defaultMap.get()).get("entries"), mapsPage.getNumOfEntriesForDefaultMap());
+    mapsPage.clickLogoutButton();
+
   }
+
 
 }

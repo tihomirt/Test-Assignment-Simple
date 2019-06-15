@@ -39,4 +39,5 @@ abstract class BasePage extends LoadableComponent<BasePage> {
   protected void isLoaded() throws Error {
 
   }
+  
 }
