@@ -3,8 +3,8 @@ package com.qa.api;
 import static io.restassured.RestAssured.given;
 
 import io.restassured.response.Response;
+import java.util.Collections;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -24,11 +24,8 @@ public class ClustersDevMapApi extends ApiBase {
    * @return
    */
   public Response getMapInformation() {
-    Set<Cookie> cookiesSet = getDriver().manage().getCookies();
-
-    Map<String, String> map = 
-        cookiesSet.stream()
-        .collect(Collectors.toMap(x -> x.getName(), x -> x.getValue()));
+    Map<String, String> map = Collections.unmodifiableMap(getDriver().manage().getCookies().stream()
+        .collect(Collectors.toMap(Cookie::getName, Cookie::getValue)));
     return given()
         .cookies(map)
         .when()
