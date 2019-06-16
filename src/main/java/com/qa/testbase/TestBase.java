@@ -3,7 +3,6 @@ package com.qa.testbase;
 import com.qa.testbase.driverfactory.DriverFactory;
 import com.qa.testbase.extensions.CloseDriverExtension;
 import com.qa.testbase.extensions.LogExtension;
-import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
