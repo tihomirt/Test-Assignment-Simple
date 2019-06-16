@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 public class MapsPage extends AppPageBase {
 
-  private static final String MAP_NAME = "default";
   private static final String MAPS_PAGE = DOMAIN + "/mancenter/dev/maps"; 
 
   public MapsPage(WebDriver driver, BrowsersEnum browser) {
@@ -24,9 +23,9 @@ public class MapsPage extends AppPageBase {
    * which contains the map named default.
    * @return
    */
-  public Integer getNumOfEntriesForDefaultMap() {
+  public Integer getNumOfEntriesForMapWithName(String mapName) {
     return Integer.parseInt(driver.findElements(
-        By.xpath("//a[@data-test-attribute='" + MAP_NAME + "']/../../div"))
+        By.xpath("//a[@data-test-attribute='" + mapName + "']/../../div"))
         .get(1)
         .getText());
   }

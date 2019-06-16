@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 public class MapTests extends TestBase {
 
+  private static final String MAP_TO_TEST = "default";
+
   public MapTests() {
     super();
   }
@@ -42,16 +44,17 @@ public class MapTests extends TestBase {
     Optional<Object> defaultMap = mapApi.getMapInformation()
         .getBody().jsonPath().getList("")
         .stream()
-        .filter(x -> ((Map<String, String>) x).containsValue("default"))
+        .filter(x -> ((Map<String, String>) x).containsValue(MAP_TO_TEST))
         .findFirst();
     
     if (defaultMap.isPresent()) {
-      assertEquals(((Map)defaultMap.get()).get("entries"), mapsPage.getNumOfEntriesForDefaultMap());
+      assertEquals(((Map)defaultMap.get()).get("entries"),
+          mapsPage.getNumOfEntriesForMapWithName(MAP_TO_TEST));
     } else {
       fail("Data from api is not available.");
     }
     
-    // logout after test
+    // logout after test to be able to restart the test
     mapsPage.clickLogoutButton();
   }
 
