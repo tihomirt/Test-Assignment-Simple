@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 public class MapTests extends TestBase {
 
-  public MapTests() throws Exception {
+  public MapTests() {
     super();
   }
 
@@ -31,9 +31,9 @@ public class MapTests extends TestBase {
    */
   @Test
   public void testMapEntries() {
-    LandingPage landingPage = (LandingPage) new LandingPage(driver, getBrowser());
-    ManagementCenterPage managmentCenterPage = landingPage.defaultLogin();
-    MapsPage mapsPage = (MapsPage) managmentCenterPage.getMenuSection().click(MenuItem.Maps);
+    LandingPage landingPage = new LandingPage(driver, getBrowser());
+    ManagementCenterPage managementCenterPage = landingPage.defaultLogin();
+    MapsPage mapsPage = (MapsPage) managementCenterPage.getMenuSection().click(MenuItem.Maps);
 
     // send the cookie along with the get request
     ClustersDevMapApi mapApi = new ClustersDevMapApi(driver);

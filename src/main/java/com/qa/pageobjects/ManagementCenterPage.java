@@ -5,7 +5,7 @@ import com.qa.wait.WaitForUrlToBe;
 import org.openqa.selenium.WebDriver;
 
 
-public class ManagementCenterPage extends BaseAppPage {
+public class ManagementCenterPage extends AppPageBase {
 
   private static final String MANAGEMENT_CENTER_PAGE = DOMAIN + "/mancenter/dev"; 
   

@@ -11,15 +11,15 @@ import org.slf4j.LoggerFactory;
  * Abstract base class for holding common elements.
  *
  */
-abstract class BasePage extends LoadableComponent<BasePage> {
+abstract class PageBase extends LoadableComponent<PageBase> {
 
-  protected static final Logger logger = LoggerFactory.getLogger(BasePage.class);
-  public static final String DOMAIN = "http://localhost:8081";
+  protected static final Logger logger = LoggerFactory.getLogger(PageBase.class);
+  protected static final String DOMAIN = "http://localhost:8081";
   
   protected WebDriver driver;
   protected BrowsersEnum browser;
 
-  public BasePage(final WebDriver driver, BrowsersEnum browser) {
+  public PageBase(final WebDriver driver, BrowsersEnum browser) {
     this.driver = driver;
     this.browser = browser;
 

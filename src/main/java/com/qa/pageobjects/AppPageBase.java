@@ -10,13 +10,13 @@ import org.openqa.selenium.support.FindBy;
  * @author Tihomir Turzai
  *
  */
-abstract class BaseAppPage extends BasePage {
+abstract class AppPageBase extends PageBase {
 
   @FindBy(css = "a[data-test='logout']")
   private WebElement logoutButton;
   private MenuSection menuSection;
   
-  public BaseAppPage(WebDriver driver, BrowsersEnum browser) {
+  public AppPageBase(WebDriver driver, BrowsersEnum browser) {
     super(driver, browser);
     menuSection = new MenuSection(driver, browser);
   }

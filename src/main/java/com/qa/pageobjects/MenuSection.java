@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
  * @author Tihomir Turzai
  *
  */
-public class MenuSection extends BasePage {
+public class MenuSection extends PageBase {
 
   public MenuSection(WebDriver driver, BrowsersEnum browser) {
     super(driver, browser);
@@ -21,7 +21,7 @@ public class MenuSection extends BasePage {
    * @param menuItem - 
    * @return
    */
-  public BasePage click(MenuItem menuItem) {
+  public PageBase click(MenuItem menuItem) {
     driver.findElement(By.cssSelector("[data-test='" + menuItem.getLocator() + "']")).click();
     switch (menuItem) {
       case Maps:

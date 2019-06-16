@@ -37,9 +37,8 @@ public class TestBase {
   
   /**
    * Driver creation.
-   * @throws MalformedURLException - if Jenkins url is malformed
    */
-  public TestBase() throws MalformedURLException {
+  public TestBase() {
     this.driver = DriverFactory.createDriver(browser);
     driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
   }

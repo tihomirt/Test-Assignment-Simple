@@ -5,7 +5,7 @@ import com.qa.wait.WaitForUrlToBe;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MapsPage extends BaseAppPage {
+public class MapsPage extends AppPageBase {
 
   private static final String MAP_NAME = "default";
   private static final String MAPS_PAGE = DOMAIN + "/mancenter/dev/maps"; 
