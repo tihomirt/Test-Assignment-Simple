@@ -2,7 +2,7 @@
 Test assignment to showcase the usage of Maven, RestAssured, JUnit5, WebDriver with Java8+
 
 ## Running instructions:
-Make sure java8, google chrome and maven are installed properly
+Make sure java8, google chrome and maven are installed properly.
 
 Download the code
 
