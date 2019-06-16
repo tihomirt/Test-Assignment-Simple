@@ -1,34 +1,28 @@
 pipeline {
-    agent none
-    stages {    
-        stage('Build Jar') {
-            agent {
-                docker {
-                    image 'maven:3-alpine'
-                    args '-v $HOME/.m2:/root/.m2'
-                }
-            }
+    agent any
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
+    stages {
+        stage ('Initialize') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                bat '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
-        stage('Build Image') {
+
+        stage ('Build') {
             steps {
-                script {
-                      // vinsdocker/containertest => organization/application - it could be anything
-                      app = docker.build("vinsdocker/containertest")
+                bat 'mvn clean test' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
                 }
             }
         }
-        stage('Push Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        app.push("${BUILD_NUMBER}")
-                        app.push("latest")
-                    }
-                }
-            }
-        }        
     }
 }
