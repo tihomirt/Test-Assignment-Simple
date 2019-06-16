@@ -6,23 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WaitForElementToAppear implements Function<WebElement, WebElement> {
-
-  private static final int BASIC_WAIT_TIME_IN_SECONDS = 12;
-  private WebDriver driver;
+public class WaitForElementToAppear extends WaitBase implements Function<WebElement, WebElement> {
 
   public WaitForElementToAppear(WebDriver driver) {
-    this.driver = driver;
+    super(driver);
   }
 
   @Override
   public WebElement apply(WebElement element) {
-    WebDriverWait wait = new WebDriverWait(driver, BASIC_WAIT_TIME_IN_SECONDS);
+    WebDriverWait wait = new WebDriverWait(getDriver(), BASIC_WAIT_TIME_IN_SECONDS);
     return wait.until(ExpectedConditions.visibilityOf(element));
-  }
-  
-  public WebElement waitForElementToAppearFunction(WebElement webElement) {
-    return new WaitForElementToAppear(driver).apply(webElement);
   }
 
 }

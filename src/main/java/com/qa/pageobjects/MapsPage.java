@@ -16,7 +16,7 @@ public class MapsPage extends BaseAppPage {
 
   @Override
   protected void isLoaded() throws Error {
-    new WaitForUrlToBe(driver).apply(MAPS_PAGE);
+    new WaitForUrlToBe(driver).accept(MAPS_PAGE);
   }
 
   /**

@@ -15,7 +15,7 @@ public class ManagementCenterPage extends BaseAppPage {
 
   @Override
   protected void isLoaded() throws Error {
-    new WaitForUrlToBe(driver).apply(MANAGEMENT_CENTER_PAGE);
+    new WaitForUrlToBe(driver).accept(MANAGEMENT_CENTER_PAGE);
   }
 
 
